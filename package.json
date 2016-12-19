@@ -1,0 +1,19 @@
+{
+  "name": "tracker",
+  "version": "1.0.0",
+  "description": "Track Trucks",
+  "main": "index.js",
+  "scripts": {
+    "test": "testApp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
