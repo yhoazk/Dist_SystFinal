@@ -11,28 +11,32 @@
 // Click mouse to add boids into the system
 Flock flock;
 PVector center;
-
+PImage map;
 boolean showvalues = true;
 boolean scrollbar = false;
-
+//int w = 1000;
+//int h = 1250;
 
 void setup() {
-  size(displayWidth,displayHeight,P2D);
+  size(1200,500,P2D);
   setupScrollbars();
   center = new PVector(width/2,height/2);
   colorMode(RGB,255,255,255,100);
   flock = new Flock(this);
   // Add an initial set of boids into the system
   for (int i = 0; i < 1; i++) {
-    flock.addBoid(new Boid(width/2,height/2, this));
+    flock.addBoid(new Boid(width/2,height/2, 123, this));
   }
   smooth();
+  map = loadImage("./map.PNG");
 }
 
 
 void draw() {
 
-  background(255); 
+  background(map); 
+  /*x,y*/
+
   flock.run();
   drawScrollbars();
 
