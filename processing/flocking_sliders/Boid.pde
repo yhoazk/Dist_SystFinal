@@ -9,6 +9,12 @@ float maxspeed = 1;
 float maxforce = 0.025;
 Client myClient;
 
+double[] transformCoord(int x, int y){
+  double trns[] = {0,0};
+  trns[0] = 51.5 + (x * 0.00008891666);
+  trns[1] = (y * 0.00072535);
+  return(trns);
+}
 // Flocking
 // Daniel Shiffman <http://www.shiffman.net>
 // The Nature of Code, Spring 2009
@@ -22,12 +28,13 @@ class Boid {
   PVector vel;
   PVector acc;
   float r;
-
-  Boid(float x, float y, PApplet self) {
+  int id = 0;
+  Boid(float x, float y, int new_id, PApplet self) {
     acc = new PVector(0,0);
     vel = new PVector(random(-1,1),random(-1,1));
     loc = new PVector(x,y);
-    r = 2.0;
+    r = 3.0;
+    this.id = new_id;
     myClient = new Client(self, "127.0.0.1", 10002);
     myClient.write("init");
   }
@@ -36,10 +43,10 @@ class Boid {
     acc = new PVector(0,0);
     vel = new PVector(random(-1,1),random(-1,1));
     loc = new PVector(x,y);
-    r = 2.0;
+    r = 3.0;
   }
 
-
+  
 
   void run(ArrayList<Boid> boids) {
     flock(boids);
@@ -77,7 +84,13 @@ class Boid {
     loc.add(vel);
     // Reset accelertion to 0 each cycle
     acc.mult(0);
-    myClient.write("x:"+loc.x+"y:"+loc.y+"\n");
+    //myClient.write("{\"id:\"" + id + "x:\""+ (51.5 + (loc.x * 0.00008891666))+"\", y:\""+(loc.y * 0.00072535)+"\"}\n");
+    //print("{\"id:\"" + id + "x:\""+ (51.5 + (loc.x * -0.00008891666))+"\", y:\""+(loc.y * 0.00072535)+"\"}\n");
+    if(id == 123){
+          print("{lat:"+ (51.516336 + (loc.x * -0.00008891666))+", lng:"+(-0.073196 + (loc.y * 0.00072535))+"},\n");
+    }
+    //print("{lat:"+ (51.516336 + (loc.x * -0.00008891666))+", lng:"+(-0.073196 + (loc.y * 0.00072535))+"},\n");
+    //print("{lat:"+ loc.x +", lng:"+loc.y +"},\n");
   }
 
   // A method that calculates and applies a steering force towards a target
@@ -98,7 +111,7 @@ class Boid {
   void render() {
     // Draw a triangle rotated in the direction of velocity
     float theta = vel.heading2D() + radians(90);
-    fill(175);
+    fill(255, 102, 0);
     stroke(5);
     pushMatrix();
     translate(loc.x,loc.y);
