@@ -28,7 +28,8 @@ threads. This is the bottleneck for RabbitMQ.
 * 
 
 General Comparison:
-|                  | Kafka  | RabbitMQ |
+
+|      topic       | Kafka  | RabbitMQ |
 | :--------------  | :----- | :------- |
 | Programming Lang | Scala | Erlang |
 | Officialy supported clients | Java | Java/C#/Erlang |
