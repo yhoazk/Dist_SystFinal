@@ -9,13 +9,15 @@
 // Rules: Cohesion, Separation, Alignment
 
 // Click mouse to add boids into the system
+
+import http.requests.*;
+
 Flock flock;
 PVector center;
 PImage map;
 boolean showvalues = true;
 boolean scrollbar = false;
-//int w = 1000;
-//int h = 1250;
+JSONObject ezm;
 
 void setup() {
   size(1200,500,P2D);

@@ -2,6 +2,7 @@
 // Daniel Shiffman
 // http://natureofcode.com
 import processing.net.*; 
+import http.requests.*;
 float swt = 25.0;     //sep.mult(25.0f);
 float awt = 4.0;      //ali.mult(4.0f);
 float cwt = 5.0;      //coh.mult(5.0f);
@@ -43,6 +44,7 @@ class Boid {
     acc = new PVector(0,0);
     vel = new PVector(random(-1,1),random(-1,1));
     loc = new PVector(x,y);
+    id = int(random(500));
     r = 3.0;
   }
 
@@ -84,7 +86,7 @@ class Boid {
     loc.add(vel);
     // Reset accelertion to 0 each cycle
     acc.mult(0);
-    //myClient.write("{\"id:\"" + id + "x:\""+ (51.5 + (loc.x * 0.00008891666))+"\", y:\""+(loc.y * 0.00072535)+"\"}\n");
+    myClient.write("{\"id:\"" + id + " x:\""+ (51.5 + (loc.x * 0.00008891666))+"\", y:\""+(loc.y * 0.00072535)+"\"}\n");
     //print("{\"id:\"" + id + "x:\""+ (51.5 + (loc.x * -0.00008891666))+"\", y:\""+(loc.y * 0.00072535)+"\"}\n");
     if(id == 123){
           print("{lat:"+ (51.516336 + (loc.x * -0.00008891666))+", lng:"+(-0.073196 + (loc.y * 0.00072535))+"},\n");
